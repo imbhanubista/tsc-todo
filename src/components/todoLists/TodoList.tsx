@@ -1,32 +1,27 @@
-import React from 'react'
-import './todoList.css'
-import {Todo} from '../../models/model'
-import {AiOutlineEdit,AiOutlineDelete,AiOutlineFileDone} from 'react-icons/ai'
+import React from "react";
+import "./todoList.css";
+import { Todo } from "../../models/model";
 
-interface Props{
-    todos:Todo[];
-    setTodos:React.Dispatch<React.SetStateAction<Todo[]>>
+import SingleTodo from "./SingleTodo";
+
+interface Props {
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const TodoList:React.FC<Props> = ({todos,setTodos}:Props) => {
+const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
   return (
-  <>
-   {
-    todos.map((todo)=>(
-      <div className="main-container">
-      <div className='title-section'>
-      <span className="title">Todo List</span>
-      </div>
-      <div className="action">
-        <div className='edit'><AiOutlineEdit/></div>
-        <div className='delete'><AiOutlineDelete/></div>
-        <div className='done'><AiOutlineFileDone/></div>
-      </div>
-      </div>
-    ))
-   }
-  </>
-  )
-}
+    <div className="todos">
+      {todos.map((todo) => (
+        <SingleTodo
+          todo={todo}
+          key={todo.id}
+          todos={todos}
+          setTodos={setTodos}
+        />
+      ))}
+    </div>
+  );
+};
 
-export default TodoList
+export default TodoList;
